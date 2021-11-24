@@ -10,5 +10,5 @@ class NoteRepository {
         return dao.insert(note = note)
     }
 
-    suspend fun getAllNotes() = dao.getAllNot()
+     fun getAllNotes() = dao.getAllNot()
 }

@@ -6,6 +6,7 @@ import com.example.noteapp.data.Note
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
@@ -20,7 +21,7 @@ interface NoteDao {
     suspend fun update(note: Note)
 
     @Query("SELECT * FROM NOTE_TABLE ORDER BY id DESC ")
-    suspend fun getAllNot(): List<Note>
+     fun getAllNot():Flow<List<Note>>
 
 
 }

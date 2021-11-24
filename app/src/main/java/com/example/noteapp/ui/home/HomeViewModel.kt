@@ -1,14 +1,12 @@
 package com.example.noteapp.ui.home
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.noteapp.data.Note
 import com.example.noteapp.repository.NoteRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel(), NoteInteractionListener {
@@ -16,12 +14,8 @@ class HomeViewModel : ViewModel(), NoteInteractionListener {
 
     val newNoteText = MutableLiveData<String>()
 
-    private val _notes=MutableLiveData<List<Note>>()
-    val notes: LiveData<List<Note>> = _notes
+    val notes: LiveData<List<Note>> = repository.getAllNotes().asLiveData()
 
-    init {
-        loadNotes()
-    }
     fun addNote(){
         viewModelScope.launch {
             newNoteText.value?.let {
@@ -29,12 +23,7 @@ class HomeViewModel : ViewModel(), NoteInteractionListener {
             }
         }
     }
-    private fun loadNotes(){
-        viewModelScope.launch {
-            val allNotes=repository.getAllNotes()
-            _notes.postValue(allNotes)
-        }
-    }
+
 
 //
 //    fun addNote() {
