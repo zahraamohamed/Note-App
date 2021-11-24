@@ -14,12 +14,9 @@ class HomeViewModel : ViewModel(), NoteInteractionListener {
 
     val newNoteText = MutableLiveData<String>()
 
-    private val _notes = MutableLiveData<List<Note>>()
-    val notes: LiveData<List<Note>> = _notes
 
-    init {
-        loadData()
-    }
+    val notes: LiveData<List<Note>> = repository.getAllNotes()
+
 
     fun addNote() {
         newNoteText.value?.let {
@@ -30,19 +27,7 @@ class HomeViewModel : ViewModel(), NoteInteractionListener {
         }
     }
 
-    fun loadData() {
-        repository.getAllNotes().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::onGetNotes, this::onNotesFail)
-    }
 
-    private fun onGetNotes(listOfNotes: List<Note>) {
-        _notes.postValue(listOfNotes)
-        Log.i("note",listOfNotes.toString())
-    }
 
-    private fun onNotesFail(t: Throwable) {
-
-    }
 
 }

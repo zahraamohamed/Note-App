@@ -1,5 +1,6 @@
 package com.example.noteapp.data.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.noteapp.data.Note
 import io.reactivex.rxjava3.core.Completable
@@ -18,8 +19,8 @@ interface NoteDao {
     @Update
     fun update(note: Note): Completable
 
-    @Query("SELECT * FROM NOTE_TABLE ")
-    fun getAllNot(): Observable<List<Note>>
+    @Query("SELECT * FROM NOTE_TABLE ORDER BY id DESC ")
+    fun getAllNot(): LiveData<List<Note>>
 
 
 }
