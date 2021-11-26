@@ -23,5 +23,9 @@ interface NoteDao {
     @Query("SELECT * FROM NOTE_TABLE ORDER BY id DESC ")
      fun getAllNot():Flow<List<Note>>
 
+     @Query("SELECT * FROM NOTE_TABLE WHERE id==:id ")
+     fun getANotById(id :Long?):Flow<Note>
 
+    @Query("SELECT * FROM NOTE_TABLE WHERE content LIKE:searchTerm ORDER BY id DESC ")
+   suspend fun getFilterNotes(searchTerm:String):List<Note>
 }

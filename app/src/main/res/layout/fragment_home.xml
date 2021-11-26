@@ -17,24 +17,38 @@
         tools:context=".ui.home.HomeFragment">
 
 
+<!--        <EditText-->
+<!--            android:id="@+id/add_note"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@={viewModel.newNoteText}"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
         <EditText
-            android:id="@+id/t"
+            android:id="@+id/filter_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.newNoteText}"
+            android:hint=" filter note"
+            android:paddingStart="4dp"
+            android:layout_margin="16dp"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:text="@={viewModel.searchNote}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{()->viewModel.addNote()}"
-            android:text="click"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t" />
+
+<!--     <Button-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:onClick="@{()->viewModel.searchNote()}"-->
+<!--            android:text="search note"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/button2" />-->
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -42,10 +56,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:items="@{viewModel.notes}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/filter_note" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:contextClickable="true"
+            android:src="@drawable/ic_baseline_add_24"
+            app:backgroundTint="@color/app_color"
+            app:fabCustomSize="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

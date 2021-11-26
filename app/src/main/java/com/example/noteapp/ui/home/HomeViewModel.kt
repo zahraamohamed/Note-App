@@ -1,41 +1,52 @@
 package com.example.noteapp.ui.home
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.noteapp.data.Note
 import com.example.noteapp.repository.NoteRepository
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.example.noteapp.util.Event
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
+import java.util.*
 
 class HomeViewModel : ViewModel(), NoteInteractionListener {
     private val repository = NoteRepository()
 
-    val newNoteText = MutableLiveData<String>()
+    val notes = MutableStateFlow<List<Note>?>(null)
+    val searchNote = MutableStateFlow("")
+    private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
+    val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
 
-    val notes: LiveData<List<Note>> = repository.getAllNotes().asLiveData()
+    init {
+        showNotes()
+         searchNote()
+    }
 
-    fun addNote(){
+    private fun showNotes() {
         viewModelScope.launch {
-            newNoteText.value?.let {
-                repository.insertNote(Note(0, it, "99", false))
+            repository.getAllNotes().collect {
+                notes.emit(it)
             }
         }
     }
 
+    private fun searchNote() {
+        viewModelScope.launch {
+            searchNote.debounce(1000).collect {
+                val result = repository.getFilterNotes(it)
+                notes.emit(result)
+            }
+        }
+    }
 
-//
-//    fun addNote() {
-//        newNoteText.value?.let {
-//            repository.insertNote(Note(0, it, "99", false))
-//                .subscribeOn(Schedulers.io())
-//                .subscribe()
-//            newNoteText.postValue(" ")
-//        }
-//    }
-
-
-
+    override fun onClickNote(id: Long?) {
+        viewModelScope.launch {
+            _navigateToEditNote.emit(Event(id))
+        }
+    }
 
 }
