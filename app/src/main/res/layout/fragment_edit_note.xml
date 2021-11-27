@@ -34,17 +34,27 @@
             app:layout_constraintTop_toBottomOf="@+id/check" />
 
 
-
-
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_margin="30dp"
+            android:contextClickable="true"
+            android:src="@drawable/ic_baseline_check_24"
+            app:backgroundTint="@color/app_color"
+            app:fabCustomSize="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/is_important"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.isImportant}"
+            android:layout_margin="24dp"
+            android:text="Is Important "
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

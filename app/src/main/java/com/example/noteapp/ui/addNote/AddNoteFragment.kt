@@ -1,4 +1,4 @@
-package com.example.noteapp.ui.addnote
+package com.example.noteapp.ui.addNote
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.noteapp.databinding.FragmentAddNoteBinding
-import com.example.noteapp.databinding.FragmentHomeBinding
 import com.example.noteapp.ui.base.BaseFragment
-import com.example.noteapp.ui.home.HomeFragmentDirections
-import com.example.noteapp.ui.home.HomeViewModel
 import java.util.*
 
 class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {

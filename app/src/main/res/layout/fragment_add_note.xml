@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.noteapp.ui.addnote.AddNoteViewModel" />
+            type="com.example.noteapp.ui.addNote.AddNoteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,17 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
+            android:background="@null"
+            android:focusable="true"
+            android:hint="Add your Note ..."
             android:maxEms="100"
             android:maxLines="4"
-            android:hint="Add your Note ..."
             android:padding="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:focusable="true"
-            android:background="@null"
             android:text="@={viewModel.newNoteText}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/check" />
+            app:layout_constraintTop_toBottomOf="@+id/is_important" />
 
         <TextView
             android:id="@+id/date"
@@ -39,23 +39,38 @@
             android:layout_margin="24dp"
             android:background="@null"
             android:focusable="true"
-            android:textColor="#8C8B8B"
-            android:textSize="10sp"
             android:padding="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#8C8B8B"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <ImageButton
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_margin="30dp"
+            android:contextClickable="true"
+            android:src="@drawable/ic_baseline_check_24"
+            app:backgroundTint="@color/app_color"
+            app:fabCustomSize="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/is_important"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.isImportantNote}"
+           android:layout_margin="24dp"
+            android:text="Is Important "
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,9 +1,8 @@
 package com.example.noteapp.ui.home
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.noteapp.data.Note
+import com.example.noteapp.data.entity.Note
 import com.example.noteapp.repository.NoteRepository
 import com.example.noteapp.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,19 +10,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
-import java.util.*
 
-class HomeViewModel : ViewModel(), NoteInteractionListener {
-    private val repository = NoteRepository()
+class HomeViewModel : ViewModel(), HomeInteractionListener {
+
+    private val repository = NoteRepository
 
     val notes = MutableStateFlow<List<Note>?>(null)
     val searchNote = MutableStateFlow("")
+
     private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
     val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
 
     init {
         showNotes()
-         searchNote()
+        searchNote()
     }
 
     private fun showNotes() {
@@ -42,6 +42,22 @@ class HomeViewModel : ViewModel(), NoteInteractionListener {
             }
         }
     }
+
+
+    private val deleteNote = MutableStateFlow<String?>(null)
+
+//    private fun deleteNote(noteID: Long) {
+//        viewModelScope.launch {
+//            deleteNote.value?.let {
+//                repository.deleteNote(noteID = noteID)
+//            }
+//        }
+//    }
+
+    override fun onClickDeleteIcon(id: Long) {
+//        deleteNote(noteID = id)
+    }
+
 
     override fun onClickNote(id: Long?) {
         viewModelScope.launch {

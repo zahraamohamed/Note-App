@@ -5,7 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.noteapp.data.Note
+import com.example.noteapp.data.dao.NoteDao
+import com.example.noteapp.data.entity.Note
 
 @Database(entities = [Note::class], version = 1)
 @TypeConverters(Converter::class)
@@ -22,7 +23,7 @@ abstract class NoteDatabase : RoomDatabase() {
             return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
 
         }
-        fun getInstanceWithOutContext(): NoteDatabase{
+        fun getInstanceWithOutContext(): NoteDatabase {
             return instance!!
         }
 

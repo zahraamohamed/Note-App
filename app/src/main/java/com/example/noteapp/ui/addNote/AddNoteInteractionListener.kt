@@ -1,4 +1,4 @@
-package com.example.noteapp.ui.addnote
+package com.example.noteapp.ui.addNote
 
 import com.example.noteapp.ui.base.BaseInteractionListener
 

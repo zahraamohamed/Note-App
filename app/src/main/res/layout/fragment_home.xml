@@ -26,15 +26,20 @@
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
+
         <EditText
             android:id="@+id/filter_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" filter note"
-            android:paddingStart="4dp"
+            android:hint="  filter note"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="16dp"
+            android:pointerIcon="arrow"
+            android:elevation="2dp"
             android:layout_margin="16dp"
+            android:background="@drawable/search_shape"
             android:drawableStart="@drawable/ic_baseline_search_24"
-            android:text="@={viewModel.searchNote}"
+            android:text="@={ viewModel.searchNote}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:items="@{viewModel.notes}"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="2"
             app:layout_constraintBottom_toBottomOf="parent"

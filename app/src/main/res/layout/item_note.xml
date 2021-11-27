@@ -5,11 +5,11 @@
 
 <!--        <variable-->
 <!--            name="item"-->
-<!--            type="com.example.noteapp.data.Note" />-->
+<!--            type="com.example.noteapp.data.data.Note" />-->
 
 <!--        <variable-->
 <!--            name="listener"-->
-<!--            type="com.example.noteapp.ui.home.NoteInteractionListener" />-->
+<!--            type="com.example.noteapp.ui.home.HomeInteractionListener" />-->
 <!--    </data>-->
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
@@ -43,11 +43,11 @@
 
         <variable
             name="item"
-            type="com.example.noteapp.data.Note" />
+            type="com.example.noteapp.data.entity.Note" />
 
         <variable
             name="listener"
-            type="com.example.noteapp.ui.home.NoteInteractionListener" />
+            type="com.example.noteapp.ui.home.HomeInteractionListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -67,6 +67,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:note_color="@{item.isImportant}"
             android:orientation="vertical"
           >
 
@@ -87,7 +88,17 @@
                 android:padding="8dp"
                 android:text="@{item.date.toString()}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="12sp" />
+                android:textSize="8sp" />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_baseline_add_24"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                 />
 
         </LinearLayout>
 
