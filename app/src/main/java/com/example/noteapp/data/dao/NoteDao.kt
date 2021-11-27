@@ -8,20 +8,20 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Insert
-   suspend fun insert(note: Note?)
+    suspend fun insert(note: Note?)
 
-//    @Delete
-//    suspend fun delete(noteID: Long)
+    @Delete
+    suspend fun delete(note: Note)
 
     @Update
     suspend fun update(note: Note)
 
     @Query("SELECT * FROM NOTE_TABLE ORDER BY id DESC ")
-     fun getAllNote():Flow<List<Note>>
+    fun getAllNote(): Flow<List<Note>>
 
-     @Query("SELECT * FROM NOTE_TABLE WHERE id==:id ")
-     fun getNoteById(id :Long?):Flow<Note>
+    @Query("SELECT * FROM NOTE_TABLE WHERE id==:id ")
+    fun getNoteById(id: Long?): Flow<Note>
 
     @Query("SELECT * FROM NOTE_TABLE WHERE content LIKE:searchTerm ORDER BY id DESC ")
-   suspend fun getFilterNotes(searchTerm:String):List<Note>
+    suspend fun getFilterNotes(searchTerm: String): List<Note>
 }

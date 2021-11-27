@@ -8,7 +8,7 @@ object NoteRepository {
 
     suspend fun insertNote(note: Note?) = dao.insert(note = note)
 
-//    suspend fun deleteNote(noteID: Long) = dao.delete(noteID = noteID)
+    suspend fun deleteNote(note: Note) = dao.delete(note=note)
 
     fun getAllNotes() = dao.getAllNote()
 

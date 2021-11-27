@@ -12,16 +12,19 @@ class AddNoteViewModel : ViewModel(), AddNoteInteractionListener {
     private val repository = NoteRepository
 
     val newNoteText = MutableStateFlow<String?>(null)
+    val newTitleText = MutableStateFlow<String?>(null)
     val isImportantNote = MutableStateFlow<Boolean?>(null)
 
     fun addNote() {
         viewModelScope.launch {
-                repository.insertNote(Note(0,  newNoteText.value, Date(), isImportantNote.value))
+            repository.insertNote(Note(0,
+                newNoteText.value,
+                newTitleText.value,
+                Date(),
+                isImportantNote.value))
 
         }
     }
-
-
 
 
 }

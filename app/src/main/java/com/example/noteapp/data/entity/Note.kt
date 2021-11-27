@@ -6,8 +6,9 @@ import java.util.*
 
 @Entity(tableName = "NOTE_TABLE")
 data class Note(
-   @PrimaryKey( autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     var content: String?,
+    var title: String?,
     var date: Date,
     var isImportant: Boolean?,
 )

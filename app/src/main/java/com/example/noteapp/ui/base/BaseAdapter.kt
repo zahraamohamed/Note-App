@@ -12,7 +12,7 @@ import com.example.noteapp.BR
 
 abstract class BaseAdapter<T>(
     private var _items: List<T>,
-    private val _listener: BaseInteractionListener
+    private val _listener: BaseInteractionListener,
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
     val items get() = _items

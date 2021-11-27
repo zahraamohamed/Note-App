@@ -12,9 +12,18 @@ class EditNoteViewModel : ViewModel() {
     private val repository = NoteRepository
     private val oldNote = MutableStateFlow<Note?>(null)
     val content = MutableStateFlow<String?>(null)
+    val title = MutableStateFlow<String?>(null)
     val isImportant = MutableStateFlow<Boolean?>(null)
 
     init {
+        editContent()
+        editImportantNote()
+        editTitle()
+
+    }
+
+
+    private fun editContent() {
         viewModelScope.launch {
             content.collect {
                 oldNote.emit(oldNote.value?.apply {
@@ -22,6 +31,19 @@ class EditNoteViewModel : ViewModel() {
                 })
             }
         }
+    }
+
+    private fun editTitle() {
+        viewModelScope.launch {
+            title.collect {
+                oldNote.emit(oldNote.value?.apply {
+                    title = it
+                })
+            }
+        }
+    }
+
+    private fun editImportantNote() {
         viewModelScope.launch {
             isImportant.collect {
                 oldNote.emit(oldNote.value?.apply {
@@ -31,7 +53,8 @@ class EditNoteViewModel : ViewModel() {
         }
     }
 
-    fun save() {
+
+    fun saveNote() {
         viewModelScope.launch {
             oldNote.value?.let { repository.updateNote(it) }
         }
@@ -43,6 +66,7 @@ class EditNoteViewModel : ViewModel() {
                 oldNote.emit(it)
                 content.emit(it.content)
                 isImportant.emit(it.isImportant)
+                title.emit(it.title)
             }
         }
     }

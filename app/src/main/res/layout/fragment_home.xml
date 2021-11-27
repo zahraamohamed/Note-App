@@ -17,21 +17,27 @@
         tools:context=".ui.home.HomeFragment">
 
 
-<!--        <EditText-->
-<!--            android:id="@+id/add_note"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@={viewModel.newNoteText}"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:textSize="24sp"
+            android:textColor="@color/app_color"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:text="@string/my_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <EditText
             android:id="@+id/filter_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="  filter note"
+            android:fontFamily="casual"
             android:paddingHorizontal="8dp"
             android:paddingVertical="16dp"
             android:pointerIcon="arrow"
@@ -42,18 +48,10 @@
             android:text="@={ viewModel.searchNote}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/app_title"
+            />
 
 
-<!--     <Button-->
-<!--            android:id="@+id/button"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="@{()->viewModel.searchNote()}"-->
-<!--            android:text="search note"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/button2" />-->
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -67,7 +65,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filter_note" />
+            app:layout_constraintTop_toBottomOf="@+id/filter_note"
+            tools:listitem="@layout/item_note"/>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

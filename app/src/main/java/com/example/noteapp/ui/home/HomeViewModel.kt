@@ -14,12 +14,8 @@ import kotlinx.coroutines.launch
 class HomeViewModel : ViewModel(), HomeInteractionListener {
 
     private val repository = NoteRepository
-
     val notes = MutableStateFlow<List<Note>?>(null)
     val searchNote = MutableStateFlow("")
-
-    private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
-    val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
 
     init {
         showNotes()
@@ -44,19 +40,9 @@ class HomeViewModel : ViewModel(), HomeInteractionListener {
     }
 
 
-    private val deleteNote = MutableStateFlow<String?>(null)
 
-//    private fun deleteNote(noteID: Long) {
-//        viewModelScope.launch {
-//            deleteNote.value?.let {
-//                repository.deleteNote(noteID = noteID)
-//            }
-//        }
-//    }
-
-    override fun onClickDeleteIcon(id: Long) {
-//        deleteNote(noteID = id)
-    }
+    private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
+    val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
 
 
     override fun onClickNote(id: Long?) {
@@ -64,5 +50,4 @@ class HomeViewModel : ViewModel(), HomeInteractionListener {
             _navigateToEditNote.emit(Event(id))
         }
     }
-
 }

@@ -18,7 +18,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.note.requestFocus()
-        setDate()
         binding.check.setOnClickListener {
             viewModel.addNote()
             findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToHomeFragment())
@@ -26,10 +25,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
 
     }
 
-    private fun setDate(){
-       binding.date.text=(Calendar.getInstance().time).toString()
 
-    }
 
 }
 
