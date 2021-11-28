@@ -8,7 +8,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.noteapp.databinding.FragmentAddNoteBinding
 import com.example.noteapp.ui.base.BaseFragment
-import java.util.*
 
 class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
     override val viewModel: AddNoteViewModel by activityViewModels()
@@ -21,10 +20,19 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
         binding.check.setOnClickListener {
             viewModel.addNote()
             findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToHomeFragment())
+            clearView()
         }
 
     }
 
+    fun clearView(){
+        binding.apply {
+            note.setText("")
+            title.setText("")
+            isImportant.isChecked=false
+        }
+
+    }
 
 
 }

@@ -17,6 +17,10 @@ class HomeViewModel : ViewModel(), HomeInteractionListener {
     val notes = MutableStateFlow<List<Note>?>(null)
     val searchNote = MutableStateFlow("")
 
+    private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
+    val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
+
+
     init {
         showNotes()
         searchNote()
@@ -40,9 +44,6 @@ class HomeViewModel : ViewModel(), HomeInteractionListener {
     }
 
 
-
-    private val _navigateToEditNote = MutableStateFlow<Event<Long?>>(Event(null))
-    val navigateToEditNote: StateFlow<Event<Long?>> get() = _navigateToEditNote
 
 
     override fun onClickNote(id: Long?) {
