@@ -25,10 +25,10 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
 
     }
 
-    fun clearView(){
+    private fun clearView(){
         binding.apply {
-            note.setText("")
-            title.setText("")
+            note.text = null
+            title.text = null
             isImportant.isChecked=false
         }
 
